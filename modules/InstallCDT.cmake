@@ -63,7 +63,7 @@ eosio_clang_install(llc)
 eosio_clang_install(lld)
 eosio_clang_install(ld.lld)
 eosio_clang_install(ld64.lld)
-eosio_clang_install(clang-9)
+eosio_clang_install(clang-7)
 eosio_clang_install(wasm-ld)
 
 eosio_tool_install_and_symlink(eosio-pp eosio-pp)
