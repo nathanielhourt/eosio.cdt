@@ -16,9 +16,10 @@ if [[ $(uname) == 'Darwin' ]]; then
     cmake .. -DCMAKE_BUILD_TYPE=Release
     make -j$JOBS
     export PATH=$BIN_DIR_PATH:$PATH
-    cd $BUILD_DIR_PATH/tests/unit/test_contracts
-    mkdir -p eosio.contracts
-    cd eosio.contracts
+    # cd $BUILD_DIR_PATH/tests/unit/test_contracts
+    # mkdir -p eosio.contracts
+    # cd eosio.contracts
+    cd $BUILD_DIR_PATH/tests/unit/test_contracts/eosio.contracts
     START_TIME=$(date +%s)
     cmake $CONTRACTS_DIR_PATH 
     make -j$JOBS
@@ -37,7 +38,8 @@ else # Linux
 
     [[ $IMAGE_TAG == 'centos-7.7' ]] && PRE_COMMANDS="$PRE_COMMANDS && source /opt/rh/devtoolset-7/enable"
 
-    PRE_CONTRACTS_COMMAND="export PATH=$MOUNTED_DIR/build/bin:$PATH && cd $MOUNTED_DIR/build/tests/unit/test_contracts && mkdir -p eosio.contracts && cd eosio.contracts"
+    # PRE_CONTRACTS_COMMAND="export PATH=$MOUNTED_DIR/build/bin:$PATH && cd $MOUNTED_DIR/build/tests/unit/test_contracts && mkdir -p eosio.contracts && cd eosio.contracts"
+    PRE_CONTRACTS_COMMAND="export PATH=$MOUNTED_DIR/build/bin:$PATH && cd $MOUNTED_DIR/build/tests/unit/test_contracts/eosio.contracts"
     BUILD_CONTRACTS_COMMAND="cmake $MOUNTED_DIR/eosio.contracts && make -j$JOBS"
 
     # Docker Commands
