@@ -111,7 +111,7 @@ int main(int argc, const char **argv) {
    // fix to show version info without having to have any other arguments
    for (int i=0; i < argc; i++) {
      if (argv[i] == std::string("-v")) {
-       eosio::cdt::environment::exec_subprogram("clang-9", {"-v"});
+       eosio::cdt::environment::exec_subprogram("clang-7", {"-v"});
        return 0;
      }
    }
@@ -161,7 +161,7 @@ int main(int argc, const char **argv) {
          if (llvm::sys::path::extension(input).equals(".c"))
             new_opts.insert(new_opts.begin(), "-xc++");
 
-         if (!eosio::cdt::environment::exec_subprogram("clang-9", new_opts)) {
+         if (!eosio::cdt::environment::exec_subprogram("clang-7", new_opts)) {
             llvm::sys::fs::remove(tmp_file);
             return -1;
          }
