@@ -248,9 +248,9 @@ namespace eosio { namespace cdt {
                }
                cg.actions.insert(full_action_name); // insert the method action, so we don't create the dispatcher twice
 
-               if (decl->isEosioReadOnly()) {
-                  read_only_actions.insert(decl);
-               }
+               // if (decl->isEosioReadOnly()) {
+               //    read_only_actions.insert(decl);
+               // }
             }
             else if (decl->isEosioNotify()) {
                name = generation_utils::get_notify_pair(decl);
