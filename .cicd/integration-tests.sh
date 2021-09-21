@@ -5,7 +5,7 @@ set -eo pipefail
 mkdir -p $BUILD_DIR
 
 PRE_COMMANDS="cd $MOUNTED_DIR/build"
-TEST="ctest -j$JOBS -L integration_tests -V -T Test"
+TEST="ctest -j$JOBS -L integration_tests -V -T Test && ctest -j$JOBS -L tester_tests -V -T Test"
 COMMANDS="$PRE_COMMANDS && $TEST"
 
 ARGS=${ARGS:-"--rm --init -v $(pwd):$MOUNTED_DIR"}
