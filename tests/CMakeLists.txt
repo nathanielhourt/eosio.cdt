@@ -47,21 +47,21 @@ set_property(TEST toolchain_tests PROPERTY LABELS toolchain_tests)
 add_test(NAME rt_tests COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/libraries/rt/test/rt_tests.cmake WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/libraries/rt/test/)
 set_property(TEST rt_tests PROPERTY LABELS unit_tests)
 
-# if (EOSIO_RUN_INTEGRATION_TESTS)
-   # find_package(eosio)
+if (EOSIO_RUN_INTEGRATION_TESTS)
+   find_package(eosio REQUIRED)
 
-   # if (eosio_FOUND)
-add_test(integration_tests ${EOSIO_ROOT}/bin/eosio-tester ${CMAKE_BINARY_DIR}/tests/integration/integration_tests.wasm)
-set_property(TEST integration_tests PROPERTY LABELS integration_tests)
+   if (eosio_FOUND)
+      add_test(integration_tests ${EOSIO_ROOT}/bin/eosio-tester ${CMAKE_BINARY_DIR}/tests/integration/integration_tests.wasm)
+      set_property(TEST integration_tests PROPERTY LABELS integration_tests)
 
-add_test(
-   NAME tester_tests
-   COMMAND ${EOSIO_ROOT}/bin/eosio-tester ${CMAKE_BINARY_DIR}/tests/tester/tester.wasm
-   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/tests/tester
-)
-set_property(TEST tester_tests PROPERTY LABELS tester_tests)
-   # endif()
-# endif()
+      add_test(
+         NAME tester_tests
+         COMMAND ${EOSIO_ROOT}/bin/eosio-tester ${CMAKE_BINARY_DIR}/tests/tester/tester.wasm
+         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/tests/tester
+      )
+      set_property(TEST tester_tests PROPERTY LABELS tester_tests)
+   endif()
+endif()
 
 ExternalProject_Add(
    TesterTests
